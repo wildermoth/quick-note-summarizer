@@ -27,12 +27,25 @@ class ConfigLoader:
         self.config = self._load_config()
         
     def _load_config(self) -> Dict[str, Any]:
+        default_config = {
+            'paths': {
+                'quick_capture': 'quick_capture/quick_capture.md',
+                'transcribe_script': 'transcribe-anything',
+                'output_dir': 'transcription_output'
+            },
+            'api': {
+                'ollama_endpoint': 'http://localhost:11434',
+                'model': 'deepseek-r1:8b'
+            }
+        }
+        
         try:
             with open(self.config_path, 'r') as f:
-                return yaml.safe_load(f) or {}
+                loaded_config = yaml.safe_load(f) or {}
+                return {**default_config, **loaded_config}  # Merge defaults with loaded config
         except FileNotFoundError:
-            logging.error("Config file not found, using defaults")
-            return {}
+            logging.warning("Config file not found, using defaults")
+            return default_config
 
 class QuickCaptureProcessor:
     def __init__(self) -> None:
