@@ -1,6 +1,8 @@
-# Quick Capture Processor
+# Quick Note Summarizer
 
-Automates processing of web content into Obsidian notes
+I use automate on my phone to capture notes from the web. This script automates the process of summarizing the notes and formatting them into Obsidian zettlekansten notes using local models.
+
+[![Overview](https://img.youtube.com/vi/sz6w_2Gpdow/0.jpg)](https://www.youtube.com/watch?v=sz6w_2Gpdow)
 
 ## Features
 
@@ -11,9 +13,11 @@ Automates processing of web content into Obsidian notes
 ## Setup
 
 1. Install Python 3.10+
-2. `pip install -r requirements.txt`
-3. Copy `config.example.yaml` to `config.yaml`
-4. Configure paths in `config.yaml`
+2. Install transcribe-anything:  
+   `pipx install transcribe-anything`
+3. `pip install -r requirements.txt`
+4. Copy `config.example.yaml` to `config.yaml`
+5. Configure paths in `config.yaml`
 
 ## Configuration
 
@@ -22,7 +26,7 @@ Create a `config.yaml` file in the project root with this structure:
 ```yaml
 paths:
     quick_capture: 'path/to/your/quick_capture.md'
-    transcribe_script: 'path/to/your/transcribe.py'
+    summarize_script: 'path/to/your/summarize.py'
     output_dir: 'path/to/your/output_dir'
 
 api:
